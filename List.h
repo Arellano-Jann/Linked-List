@@ -1,5 +1,3 @@
-
-
 // show all tasks
 // remove all tasks
 // exit program/to do list
@@ -7,8 +5,11 @@
 #pragma once
 #define LIST_H
 
+#include "ListInterface.h"
+#include "Node.h"
+
 template <typename T>
-class List{
+class List : public ListInterface<T>{
     T item;
     List<T>* next;
 
