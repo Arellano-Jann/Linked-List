@@ -1,7 +1,8 @@
 #pragma once
-#define LISTINTERFACE_H 
+#define LISTINTERFACE_H
+
 template<typename T> 
-class ListInterface { 
+class ListInterface{ 
 
 public: 
     virtual bool isEmpty() const = 0; 
@@ -11,6 +12,6 @@ public:
     virtual void clear() = 0; 
     virtual T getEntry(int position) const = 0;
     virtual T replace(int position, const T& newEntry) = 0; 
-    virtual ~ListInterface() { } 
+    virtual ~ListInterface();
 
-};  
+};

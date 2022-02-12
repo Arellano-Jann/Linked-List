@@ -1,7 +1,3 @@
-// show all tasks
-// remove all tasks
-// exit program/to do list
-
 #pragma once
 #define LIST_H
 
@@ -10,24 +6,27 @@
 
 template <typename T>
 class List : public ListInterface<T>{
-    T item;
-    List<T>* next;
+    int itemCount;
+    Node<T>* headPtr;
 
 public:
     List();
-    void setItem(const T& anItem);
-    void setNext(List<T>* nextPtr);
 
-    bool isEmpty() const; 
-    int getLength() const; 
-    bool insert(int newPosition, const T& newEntry); // add new task
-    bool remove(int position); // delete task
-    void clear(); 
+    bool isEmpty() const;
+    int getLength() const;
+    bool insert(int newPosition, const T& newEntry); // inserts newEntry at newPosition
+    bool remove(int position); // removes entry at position
+    void clear(); // calls remove "getLength" times
     T getEntry(int position) const;
-    T replace(int position, const T& newEntry); 
-    ~ListInterface() { } 
-
+    T replace(int position, const T& newEntry); // replaces position with newEntry
+    ~ListInterface();
     
-}
+};
 
+
+// add new task
+// delete task
+// show all tasks
+// remove all tasks
+// exit program/to do list
 #include "List.cpp"
