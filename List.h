@@ -8,6 +8,7 @@ template <typename T>
 class List : public ListInterface<T>{
     int itemCount;
     Node<T>* headPtr;
+    Node<T>* getNodePtr(int position);
 
 public:
     List();
