@@ -1,8 +1,9 @@
 // interface node
 #pragma once
-#define NODE_H 
+#define NODE_H
+
 template<typename T> 
-class Node {
+class Node{
     T item; // class object
     Node<T>* next; // next node pointer
 
