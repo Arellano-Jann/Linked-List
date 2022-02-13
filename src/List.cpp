@@ -17,7 +17,7 @@ int List<T>::getLength() const{
 
 template<typename T>
 bool List<T>::insert(int newPosition, const T& newEntry){
-	if (checkValidity(position)){
+	if (checkValidity(newPosition)){
 		Node<T>* newNodePtr = new Node<T>(newEntry, getNodePtr(newPosition));
 
 		if (newPosition == 1){
@@ -65,11 +65,11 @@ T List<T>::getEntry(int position) const{
 
 template<typename T>
 T List<T>::replace(int position, const T& newEntry){
-	if (checkValidity(position)){
+	if (checkValidity(position)){ // somewhat broken
 		if (insert(getLength() + 1, newEntry)){	// creates new node at end
 			Node<T>* save = getNodePtr(position); // copies node at position to a save
 			Node<T>* newNodePtr = getNodePtr(getLength()); // copies newNode to an easy to use variable
-			getNodePtr(position) = newNodePtr; // copies newNode to position
+			getNodePtr(position-1)->setNext(newNodePtr); // copies newNode to position
 			newNodePtr = save; // copies the save to newNodes old position (at the end)
 		}
 		return getEntry(getLength()); // check if these go out of scope and if this actually works lmao
@@ -78,16 +78,16 @@ T List<T>::replace(int position, const T& newEntry){
 } // replaces position with newEntry
 
 template<typename T>
-List<T>::~ListInterface(){
+List<T>::~List(){
 	clear();
 }
 
 template<typename T>
-Node<T>* List<T>::getNodePtr(int position){
+Node<T>* List<T>::getNodePtr(int position) const{
 	Node<T>* currentPtr = headPtr; // sets the currentPtr to the start of the list
 	if (checkValidity(position)){
 		for (int i = 0; i < position; i++){ // might need i = 1
-			currentPtr = currentPtr->getNext; // sets currentPtr to be the next pointer so it can iterate through it
+			currentPtr = currentPtr->getNext(); // sets currentPtr to be the next pointer so it can iterate through it
 			return currentPtr;
 		}
 	} //checks if valid
@@ -96,7 +96,7 @@ Node<T>* List<T>::getNodePtr(int position){
 } // gets the node pointer at the position
 
 template<typename T>
-bool List<T>::checkValidity(int position){
+bool List<T>::checkValidity(int position) const{
 	if (position > 0 && position < itemCount){
 		return true;
 	}

@@ -8,8 +8,8 @@ template <typename T>
 class List : public ListInterface<T>{
     int itemCount;
     Node<T>* headPtr;
-    Node<T>* getNodePtr(int position);
-    bool checkValidity(int position)
+    Node<T>* getNodePtr(int position) const;
+    bool checkValidity(int position) const;
 
 public:
     List();
@@ -21,7 +21,7 @@ public:
     void clear() override; // calls remove "getLength" times
     T getEntry(int position) const override;
     T replace(int position, const T& newEntry) override; // replaces position with newEntry
-    ~ListInterface() override;
+    ~List();
     
 };
 
