@@ -72,5 +72,10 @@ List<T>::~ListInterface(){
 
 template<typename T>
 Node<T>* List<T>::getNodePtr(int position){
+	//checks if valid
 
+	Node<T>* currentPtr = headPtr; // sets the currentPtr to the start of the list
+	for (int i = 0; i < position; i++){ // might need i = 1
+		currentPtr = currentPtr->getNext; // sets currentPtr to be the next pointer so it can iterate through it
+	}
 } // gets the node pointer at the position
