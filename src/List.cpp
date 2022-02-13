@@ -32,12 +32,12 @@ template<typename T>
 bool List<T>::remove(int position){
 	Node<T>* save = getNodePtr(position); // save position to delete pointer
 	Node<T>* beforePosition = getNodePtr(position - 1);
-	Node<T>* afterPosition = getNodePtr(position + 1);
+	Node<T>* afterPosition = getNodePtr(position).getNext();
 	beforePosition.setNext(afterPosition); // is this valid??
 	// link the position -1 to position +1
 	// ^^ this effectively unlinks the node at position
 	delete save; // delete the saved node
-	
+
 	return true;
 } // removes entry at position
 
