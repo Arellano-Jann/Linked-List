@@ -67,7 +67,7 @@ T List<T>::replace(int position, const T& newEntry){
 
 template<typename T>
 List<T>::~ListInterface(){
-    
+	clear();
 }
 
 template<typename T>
