@@ -36,13 +36,19 @@ template<typename T>
 bool List<T>::remove(int position){
 	if (checkValidity(position)){
 		Node<T>* save = getNodePtr(position); // save position to delete pointer
-		Node<T>* beforePosition = getNodePtr(position - 1);
-		Node<T>* afterPosition = getNodePtr(position)->getNext();
-		beforePosition->setNext(afterPosition); // is this valid??
-		// link the position -1 to position +1
-		// ^^ this effectively unlinks the node at position
-		delete save; // delete the saved node
+		if (position == 1){
+			headPtr = getNodePtr(position)->getNext();
 
+		}
+		else{
+			Node<T>* beforePosition = getNodePtr(position - 1);
+			Node<T>* afterPosition = getNodePtr(position)->getNext();
+			beforePosition->setNext(afterPosition); // is this valid??
+			// link the position -1 to position +1
+			// ^^ this effectively unlinks the node at position
+		}
+		delete save; // delete the saved node
+		itemCount--;
 		return true;
 	}
 	return false;
@@ -59,10 +65,10 @@ void List<T>::clear(){
 template<typename T>
 T List<T>::getEntry(int position) const{
 	if (checkValidity(position)){
-		std::cout << "in the if state";
+		// std::cout << "in the if state";
 		return getNodePtr(position)->getItem();
 	}
-	std::cout << "out of the if state";
+	// std::cout << "out of the if state";
 	return nullptr;
 }
 
