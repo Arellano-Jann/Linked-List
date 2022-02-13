@@ -5,6 +5,7 @@
 
 int main(){
     bool exit = false;
+    List<std::string>* toDoList = new List<std::string>;
     while(!exit){
 
         int selection = 0;
@@ -14,8 +15,6 @@ int main(){
         std::cout << "4. Complete List" << std::endl;
         std::cout << "5. Exit" << std::endl;
         std::cin >> selection;
-
-        List<std::string>* toDoList = new List<std::string>;
 
         int paramOne;
         std::string paramTwo;
