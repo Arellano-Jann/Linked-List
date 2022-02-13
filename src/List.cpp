@@ -1,6 +1,7 @@
 template<typename T>
 List<T>::List(){
-    
+    itemCount = 0;
+    headPtr = nullptr;
 }
 
 
@@ -16,9 +17,12 @@ int List<T>::getLength() const{
 
 template<typename T>
 bool List<T>::insert(int newPosition, const T& newEntry){
-    Node<T> newNodePtr = new Node<T>(newEntry, getNodePtr(newPosition));
+    Node<T>* newNodePtr = new Node<T>(newEntry, getNodePtr(newPosition));
 
-	if (newPosition == 1) headPtr = newNodePtr; // check if edge case?
+	if (newPosition == 1){
+		newNodePtr->setNext(headPtr); // not sure if necessary because getNodePtr(1) essentially does this same thing???
+		headPtr = newNodePtr; // check if the stars align
+	} 
 	itemCount++;
 
 	return true;
@@ -26,10 +30,15 @@ bool List<T>::insert(int newPosition, const T& newEntry){
 
 template<typename T>
 bool List<T>::remove(int position){
-    // save position to delete pointer
+	Node<T>* save = getNodePtr(position); // save position to delete pointer
+	Node<T>* beforePosition = getNodePtr(position - 1);
+	Node<T>* afterPosition = getNodePtr(position + 1);
+	beforePosition.setNext(afterPosition); // is this valid??
 	// link the position -1 to position +1
 	// ^^ this effectively unlinks the node at position
-	// delete the saved node
+	delete save; // delete the saved node
+	
+	return true;
 } // removes entry at position
 
 template<typename T>
@@ -43,6 +52,10 @@ void List<T>::clear(){
 template<typename T>
 T List<T>::getEntry(int position) const{
     // iterate through the back from itemCount to the position
+	for (int i = getLength(); i > position; i--){
+		Node<T>.getItem();
+	}
+	return ;
 }
 
 template<typename T>
@@ -52,7 +65,8 @@ T List<T>::replace(int position, const T& newEntry){
 		Node<T>* newNodePtr = getNodePtr(getLength());
 		getNodePtr(position) = newNodePtr;
 		newNodePtr = save;
-	} // check if these go out of scope and if this actually works lmao
+	}
+	return getEntry(getLength()); // check if these go out of scope and if this actually works lmao
 	// creates new node at end
 	// copies node at position to a save
 	// copies newNode to position
