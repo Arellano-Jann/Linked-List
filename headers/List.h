@@ -13,14 +13,14 @@ class List : public ListInterface<T>{
 public:
     List();
 
-    bool isEmpty() const;
-    int getLength() const;
-    bool insert(int newPosition, const T& newEntry); // inserts newEntry at newPosition
-    bool remove(int position); // removes entry at position
-    void clear(); // calls remove "getLength" times
-    T getEntry(int position) const;
-    T replace(int position, const T& newEntry); // replaces position with newEntry
-    ~ListInterface();
+    bool isEmpty() const override;
+    int getLength() const override;
+    bool insert(int newPosition, const T& newEntry) override; // inserts newEntry at newPosition
+    bool remove(int position) override; // removes entry at position
+    void clear() override; // calls remove "getLength" times
+    T getEntry(int position) const override;
+    T replace(int position, const T& newEntry) override; // replaces position with newEntry
+    ~ListInterface() override;
     
 };
 
