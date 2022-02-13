@@ -14,10 +14,10 @@ $(shell mkdir -p $(DIRS))
 $(ODIR)/%.o: %.cpp $(DEPS)
 	g++ $(CPPFLAGS) -c $< -o $@
 
-driver: $(OBJS)
+main: $(OBJS)
 	g++ $(CPPFLAGS) -o $@ $^
 
 clean:
-	rm $(ODIR)/*.o driver
+	rm $(ODIR)/*.o main
 
 .PHONY: clean all

@@ -17,7 +17,7 @@ int List<T>::getLength() const{
 
 template<typename T>
 bool List<T>::insert(int newPosition, const T& newEntry){
-	if (checkValidity(newPosition - 1)){
+	if (newPosition == 1 || checkValidity(newPosition - 1)){
 		Node<T>* newNodePtr = new Node<T>(newEntry, getNodePtr(newPosition));
 		getNodePtr(newPosition - 1)->setNext(newNodePtr);
 
