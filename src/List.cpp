@@ -17,8 +17,9 @@ int List<T>::getLength() const{
 
 template<typename T>
 bool List<T>::insert(int newPosition, const T& newEntry){
-	if (checkValidity(newPosition)){
+	if (checkValidity(newPosition - 1)){
 		Node<T>* newNodePtr = new Node<T>(newEntry, getNodePtr(newPosition));
+		getNodePtr(newPosition - 1)->setNext(newNodePtr);
 
 		if (newPosition == 1){
 			newNodePtr->setNext(headPtr); // not sure if necessary because getNodePtr(1) essentially does this same thing???
@@ -75,6 +76,13 @@ T List<T>::replace(int position, const T& newEntry){
 		return getEntry(getLength()); // check if these go out of scope and if this actually works lmao
 	}
 	return nullptr;
+
+	//create newNode
+	// point newNode.setNext(replaceNode.getNext());
+	// save replaceNode to delete. save = getNodePtr(position);
+	// getNodePtr(position -1).setNext(newNode);
+	// delete save;
+
 } // replaces position with newEntry
 
 template<typename T>
