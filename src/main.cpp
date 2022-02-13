@@ -1,3 +1,14 @@
+/**
+ * @file main.cpp
+ * @author Jann Arellano
+ * @brief 
+ * @version 0.1
+ * @date 2022-02-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include "../headers/List.h"
 #include "../headers/Node.h"
 #include <iostream>
@@ -20,7 +31,7 @@ int main(){
         
         int paramOne = 0;
         std::string paramTwo = "";
-        
+
         switch (selection){
             case 1: { // add task - insert node. Priority level (position), string object of task
                 std::cout << "Task priority?" << std::endl;
@@ -60,7 +71,12 @@ int main(){
             }
             case 5:{ // exit - clear list. use the destructor
                 std::cout << "Yay you made it out!" << std::endl;
+                delete toDoList;
                 exit = true;
+                break;
+            }
+            case 6:{ // replace a task
+                std::cout << toDoList->replace(1, "replacement");
                 break;
             }
         }

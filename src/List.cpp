@@ -78,10 +78,14 @@ T List<T>::replace(int position, const T& newEntry){
 		if (insert(getLength() + 1, newEntry)){	// creates new node at end
 			Node<T>* save = getNodePtr(position); // copies node at position to a save
 			Node<T>* newNodePtr = getNodePtr(getLength()); // copies newNode to an easy to use variable
-			getNodePtr(position-1)->setNext(newNodePtr); // copies newNode to position
-			newNodePtr = save; // copies the save to newNodes old position (at the end)
+
+			newNodePtr->setNext(save->getNext()); // links newNode to current chain
+			if (position == 1) { headPtr->setNext(newNodePtr); }
+			else { getNodePtr(position-1)->setNext(newNodePtr); } // completes the link above
+			getNodePtr(getLength() - 1)->setNext(save); // completes the link for the tail
+			save->setNext(nullptr); // sets save to be the tail
 		}
-		return getEntry(getLength()); // check if these go out of scope and if this actually works lmao
+		return getEntry(getLength()); // check if these go out of scope and if this actually works lmao. should return the tail
 	}
 	return nullptr;
 
@@ -107,6 +111,7 @@ Node<T>* List<T>::getNodePtr(int position) const{
 		}
 		return currentPtr;
 	} //checks if valid
+	// else if (position == 0) return currentPtr;
 	return nullptr;
 	
 } // gets the node pointer at the position
