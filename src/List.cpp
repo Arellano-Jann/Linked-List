@@ -32,8 +32,8 @@ template<typename T>
 bool List<T>::remove(int position){
 	Node<T>* save = getNodePtr(position); // save position to delete pointer
 	Node<T>* beforePosition = getNodePtr(position - 1);
-	Node<T>* afterPosition = getNodePtr(position).getNext();
-	beforePosition.setNext(afterPosition); // is this valid??
+	Node<T>* afterPosition = getNodePtr(position)->getNext();
+	beforePosition->setNext(afterPosition); // is this valid??
 	// link the position -1 to position +1
 	// ^^ this effectively unlinks the node at position
 	delete save; // delete the saved node
@@ -51,11 +51,7 @@ void List<T>::clear(){
 
 template<typename T>
 T List<T>::getEntry(int position) const{
-    // iterate through the back from itemCount to the position
-	for (int i = getLength(); i > position; i--){
-		Node<T>.getItem();
-	}
-	return ;
+	return getNodePtr(position)->getItem();
 }
 
 template<typename T>
