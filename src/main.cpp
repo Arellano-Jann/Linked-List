@@ -15,7 +15,7 @@ int main(){
         std::cout << "5. Exit" << std::endl;
         std::cin >> selection;
 
-        List<std::string> toDoList;
+        List<std::string>* toDoList = new List<std::string>;
 
         int paramOne;
         std::string paramTwo;
@@ -25,15 +25,16 @@ int main(){
                 std::cin >> paramOne;
                 std::cout << "Task name?" << std::endl;
                 std::cin >> paramTwo;
-                if (toDoList.insert(paramOne, paramTwo)){
-                    std::cout << "shit";
+                if (toDoList->insert(paramOne, paramTwo)){
+                    std::cout << "in the insert. 1" << std::endl;
                 }
                 break;
             case 2: // complete task - remove node at position.
                 break;
             case 3: // display list - iterate through list and getEntry()
-                for (int i = 0; i < toDoList.getLength(); i++){
-                    std::cout << toDoList.getEntry(i) << std::endl;
+                std::cout << "in the 3" << std::endl;
+                for (int i = 0; i < toDoList->getLength(); i++){
+                    std::cout << i+1 << '.' << toDoList->getEntry(i+1) << std::endl;
                 }
                 break;
             case 4: // complete list - clear list

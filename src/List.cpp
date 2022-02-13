@@ -19,12 +19,12 @@ template<typename T>
 bool List<T>::insert(int newPosition, const T& newEntry){
 	if (newPosition == 1 || checkValidity(newPosition - 1)){
 		Node<T>* newNodePtr = new Node<T>(newEntry, getNodePtr(newPosition));
-		getNodePtr(newPosition - 1)->setNext(newNodePtr);
 
 		if (newPosition == 1){
 			newNodePtr->setNext(headPtr); // not sure if necessary because getNodePtr(1) essentially does this same thing???
 			headPtr = newNodePtr; // check if the stars align
-		} 
+		}
+		else{ getNodePtr(newPosition - 1)->setNext(newNodePtr); }
 		itemCount++;
 
 		return true;
@@ -59,8 +59,10 @@ void List<T>::clear(){
 template<typename T>
 T List<T>::getEntry(int position) const{
 	if (checkValidity(position)){
+		std::cout << "in the if state";
 		return getNodePtr(position)->getItem();
 	}
+	std::cout << "out of the if state";
 	return nullptr;
 }
 

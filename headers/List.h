@@ -3,10 +3,11 @@
 
 #include "ListInterface.h"
 #include "Node.h"
+#include <iostream>
 
 template <typename T>
 class List : public ListInterface<T>{
-    int itemCount;
+    int itemCount = 0;
     Node<T>* headPtr;
     Node<T>* getNodePtr(int position) const;
     bool checkValidity(int position) const;
