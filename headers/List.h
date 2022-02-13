@@ -9,6 +9,7 @@ class List : public ListInterface<T>{
     int itemCount;
     Node<T>* headPtr;
     Node<T>* getNodePtr(int position);
+    bool checkValidity(int position)
 
 public:
     List();
