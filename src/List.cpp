@@ -47,7 +47,7 @@ void List<T>::clear(){
         remove(itemCount);
         itemCount--;
     } // check if this is the right implementation
-} // calls remove "getLength" times
+} // calls remove "itemCount" times
 
 template<typename T>
 T List<T>::getEntry(int position) const{
@@ -56,17 +56,13 @@ T List<T>::getEntry(int position) const{
 
 template<typename T>
 T List<T>::replace(int position, const T& newEntry){
-    if (insert(getLength(), newEntry)){
-		Node<T>* save = getNodePtr(position);
-		Node<T>* newNodePtr = getNodePtr(getLength());
-		getNodePtr(position) = newNodePtr;
-		newNodePtr = save;
+    if (insert(getLength() + 1, newEntry)){	// creates new node at end
+		Node<T>* save = getNodePtr(position); // copies node at position to a save
+		Node<T>* newNodePtr = getNodePtr(getLength()); // copies newNode to an easy to use variable
+		getNodePtr(position) = newNodePtr; // copies newNode to position
+		newNodePtr = save; // copies the save to newNodes old position (at the end)
 	}
 	return getEntry(getLength()); // check if these go out of scope and if this actually works lmao
-	// creates new node at end
-	// copies node at position to a save
-	// copies newNode to position
-	// copies save to newNode's old position (at end)
 } // replaces position with newEntry
 
 template<typename T>
