@@ -102,9 +102,8 @@ template<typename T>
 Node<T>* List<T>::getNodePtr(int position) const{
 	Node<T>* currentPtr = headPtr; // sets the currentPtr to the start of the list
 	if (checkValidity(position)){
-		for (int i = 0; i < position-1; i++){ // might need i = 1
+		for (int i = 0; i < position-1; i++){
 			currentPtr = currentPtr->getNext(); // sets currentPtr to be the next pointer so it can iterate through it
-			return currentPtr;
 		}
 		return currentPtr;
 	} //checks if valid
