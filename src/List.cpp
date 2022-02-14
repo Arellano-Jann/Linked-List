@@ -75,25 +75,13 @@ T List<T>::getEntry(int position) const{
 template<typename T>
 T List<T>::replace(int position, const T& newEntry){
 	if (checkValidity(position)){ // somewhat broken
-		if (insert(getLength() + 1, newEntry)){	// creates new node at end
-			Node<T>* save = getNodePtr(position); // copies node at position to a save
-			Node<T>* newNodePtr = getNodePtr(getLength()); // copies newNode to an easy to use variable
-
-			newNodePtr->setNext(save->getNext()); // links newNode to current chain
-			if (position == 1) { headPtr->setNext(newNodePtr); }
-			else { getNodePtr(position-1)->setNext(newNodePtr); } // completes the link above
-			getNodePtr(getLength() - 1)->setNext(save); // completes the link for the tail
-			save->setNext(nullptr); // sets save to be the tail
+		if (checkValidity(position)){ // somewhat broken
+    			Node<T>* save = getNodePtr(position);
+    			T item = save->getItem();
+    			getNodePtr(position)->setItem(newEntry);
+    			return item;
 		}
-		return getEntry(getLength()); // check if these go out of scope and if this actually works lmao. should return the tail
-	}
 	return nullptr;
-
-	//create newNode
-	// point newNode.setNext(replaceNode.getNext());
-	// save replaceNode to delete. save = getNodePtr(position);
-	// getNodePtr(position -1).setNext(newNode);
-	// delete save;
 
 } // replaces position with newEntry
 
