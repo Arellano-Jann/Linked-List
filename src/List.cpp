@@ -74,13 +74,12 @@ T List<T>::getEntry(int position) const{
 
 template<typename T>
 T List<T>::replace(int position, const T& newEntry){
-	if (checkValidity(position)){ // somewhat broken
-		if (checkValidity(position)){ // somewhat broken
-    			Node<T>* save = getNodePtr(position);
-    			T item = save->getItem();
-    			getNodePtr(position)->setItem(newEntry);
-    			return item;
-		}
+	if (checkValidity(position)){
+    		Node<T>* save = getNodePtr(position);
+    		T item = save->getItem();
+    		getNodePtr(position)->setItem(newEntry);
+    		return item;
+	}
 	return nullptr;
 
 } // replaces position with newEntry
